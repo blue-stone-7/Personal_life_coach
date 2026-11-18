@@ -4,7 +4,7 @@
 
 ## 在 Codex 中使用
 
-1. 在 Codex 中打开本仓库目录 `life-coach-agent`。
+1. 在 Codex 中打开本仓库目录 `life-coach-agent`。跨平台迁移时请携带整个仓库；Codex Skill 会读取仓库根目录的 `core_prompt.md`，单独拷贝 `.agents/skills/life-coach/` 并不完整。
 2. 开始一段新对话，在消息中调用 `$life-coach`，然后自然描述你想聊的内容。示例：
 
    ```text
@@ -21,6 +21,7 @@
 - `.agents/skills/life-coach/SKILL.md` 是 Codex 项目适配入口，并要求在使用时读取核心提示词。
 - `profile_template.md` 是由用户控制的个人资料模板。
 - 用户资料按 `profiles/<资料名>/profile.md` 管理，会话摘要放在对应目录的 `conversations/` 子目录。目录结构和限制见 `profiles/README.md`；摘要格式见 `profiles/conversation_template.md`。Life Coach 对话自然结束时，agent 自评依照用户对该项的持续授权，单独写入用户目录的 `quality_assess.md`，不展示给用户；模板见 `profiles/quality_assess_template.md`。用户资料路径已加入 `.gitignore`，不会随 Git 提交。长期记忆和会话摘要仍须由用户审阅并明确同意后保存。
+- 只想进行一次性对话时可跳过资料选择；这种情况下不读取或持久化个人资料、摘要或质量自评。仓库编辑请求不属于 Life Coach 对话，Skill 应切换为常规 Codex 项目协作模式。
 
 ## 隐私与安全
 
@@ -32,4 +33,6 @@
 
 ## 迁移到其他平台
 
-迁移时以 `core_prompt.md` 为规范来源；将它适配到目标平台的系统指令或项目技能中。平台专属调用方式应留在适配层，不要把 Codex 专属语法写进核心提示词。
+迁移时以 `core_prompt.md` 为规范来源；将它适配到目标平台的系统指令或项目技能中。当前 Codex Skill 依赖根目录核心文件，因此需携带整个仓库，或在目标平台适配时显式打包该文件。平台专属调用方式应留在适配层，不要把 Codex 专属语法写进核心提示词。
+
+调整对话规范后，可按 `evals/manual_scenarios.md` 用虚构对话进行人工走查，检查常见流程和隐私边界。
