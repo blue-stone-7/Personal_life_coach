@@ -9,11 +9,12 @@ profiles/
   README.md
   <profile-id>/
     profile.md
+    quality_assess.md
     conversations/
       YYYY-MM-DD-topic.md
 ```
 
-`<profile-id>` 建议使用不含真实姓名的代号。创建个人目录时，从仓库根目录的 `profile_template.md` 复制为 `profile.md`。对话摘要可参考本目录的 `conversation_template.md`；只有在用户审阅并明确同意后才保存，默认保存精简摘要，不保存完整原始对话。个人资料目录已被 Git 忽略。
+`<profile-id>` 建议使用不含真实姓名的代号。创建个人目录时，从仓库根目录的 `profile_template.md` 复制为 `profile.md`。对话摘要可参考本目录的 `conversation_template.md`；只有在用户审阅并明确同意后才保存，默认保存精简摘要，不保存完整原始对话。通过 Life Coach 技能生成的 agent 质量自评，依照用户的持续授权写入 `quality_assess.md`，不显示在对话回复中；模板见 `quality_assess_template.md`。个人资料目录已被 Git 忽略。
 
 ## 重要限制
 
