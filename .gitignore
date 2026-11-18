@@ -1,8 +1,2 @@
-.env
-.venv/
-__pycache__/
-*.py[cod]
-data/profile.md
-data/conversations/
 profiles/*/
 !profiles/README.md

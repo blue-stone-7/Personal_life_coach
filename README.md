@@ -20,7 +20,7 @@
 - `core_prompt.md` 是平台无关的行为规范单一来源。
 - `.agents/skills/life-coach/SKILL.md` 是 Codex 项目适配入口，并要求在使用时读取核心提示词。
 - `profile_template.md` 是由用户控制的个人资料模板。
-- 用户资料按 `profiles/<资料名>/profile.md` 管理，会话摘要放在对应目录的 `conversations/` 子目录。目录结构和限制见 `profiles/README.md`。用户资料路径已加入 `.gitignore`，不会随 Git 提交。技能不会自动写入或更新资料；保存任何长期记忆前，须先由用户审阅并明确同意。
+- 用户资料按 `profiles/<资料名>/profile.md` 管理，会话摘要放在对应目录的 `conversations/` 子目录。目录结构和限制见 `profiles/README.md`；摘要格式见 `profiles/conversation_template.md`。用户资料路径已加入 `.gitignore`，不会随 Git 提交。技能不会自动写入或更新资料；保存任何长期记忆前，须先由用户审阅并明确同意。
 
 ## 隐私与安全
 
