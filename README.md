@@ -1,41 +1,33 @@
-# 个人成长对话 agent
+# 本地 Codex 个人成长对话伙伴
 
-这是一个以平台无关提示词为核心的本地 API agent 起步项目。核心行为规范在 `core_prompt.md`，本地 Python 命令行程序负责调用兼容 OpenAI Chat Completions 的 API。更换服务商时，通常只需更改 `.env` 中的 API 地址、密钥和模型；若服务商接口不兼容该格式，则需要替换 `agent.py` 中的请求适配层。
+本项目将个人成长对话规范作为可移植资料保存，并提供 Codex 项目技能入口。使用时由 Codex 当前登录账号和会话运行，不需要配置 OpenAI API Key，也不需要额外 Python 服务。
 
-## 目录
+## 在 Codex 中使用
 
-- `core_prompt.md`：平台无关的角色、对话流程、安全边界和记忆规则。
-- `profile_template.md`：可移植的个人资料模板。
-- `agent.py`：本地命令行 agent；对话历史仅保存在当前进程内存中。
-- `.env.example`：API 和运行参数示例。实际 `.env` 不应提交。
+1. 在 Codex 中打开本仓库目录 `life-coach-agent`。
+2. 开始一段新对话，在消息中调用 `$life-coach`，然后自然描述你想聊的内容。示例：
 
-## 本地运行
-
-需要 Python 3.10 或更新版本及一个兼容 OpenAI Chat Completions 的 API 服务。
-
-1. 在本目录创建虚拟环境并安装依赖：
-
-   ```powershell
-   py -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   pip install -r requirements.txt
+   ```text
+   $life-coach 今天想聊聊我总是拖到最后一刻才开始重要任务这件事。
    ```
 
-2. 复制 `.env.example` 为 `.env`，填写 `API_BASE_URL`、`API_KEY` 和服务商支持的 `MODEL`。
-3. 运行：
+3. 如果技能列表没有立即显示，重载项目/重启 Codex 后再试。项目技能定义位于 `.agents/skills/life-coach/SKILL.md`。
 
-   ```powershell
-   python agent.py
-   ```
+该技能在当前 Codex 对话中应用核心提示词，不会开启独立的聊天界面或独立会话。每段新对话都可以重新调用技能。模型和用量按当前 Codex 账号及其产品规则处理；Codex 的具体账号额度和数据处理方式以应用内当前说明为准。
 
-输入 `/reset` 清空本次进程中的对话上下文，输入 `/quit` 退出。
+## 资料文件
 
-## 个人资料与隐私
+- `core_prompt.md` 是平台无关的行为规范单一来源。
+- `.agents/skills/life-coach/SKILL.md` 是 Codex 项目适配入口，并要求在使用时读取核心提示词。
+- `profile_template.md` 是由用户控制的个人资料模板。
+- 如需在本地为 Codex 对话提供个人背景，可自行创建 `data/profile.md`。该路径已加入 `.gitignore`，不会随 Git 提交。技能不会自动写入或更新资料；保存任何长期记忆前，须先由用户审阅并明确同意。
 
-程序会在每次请求时读取 `PROFILE_PATH` 指向的资料文件，默认是 `data/profile.md`。该私有路径已加入 `.gitignore`；用户可自行创建文件并从 `profile_template.md` 复制模板。agent 不会自动改写文件，也不会把对话内容自动保存成长期记忆。若希望保存某次对话的内容，请先审阅并手动更新个人资料。
+## 隐私与安全
 
-本地运行不代表 API 请求完全留在本机：对话内容会发送到 `.env` 配置的 API 服务商。请先确认该服务商的数据处理与保留设置，并避免上传你不愿分享的敏感内容。API 密钥只放在本地 `.env`，不要提交到 Git。
+调用 Codex 账号不等于所有数据只保存在本机。对话按 Codex 当前服务的数据处理和保留规则处理。请在 Codex 设置中查看适用的数据控制选项，并避免分享你不愿提供给该服务的敏感信息。
 
-## 跨平台维护
+核心提示词界定了支持性个人成长对话与心理治疗/诊断之间的边界，并说明危机情况下优先寻求现实中的即时支持。
 
-把 `core_prompt.md` 作为行为规范的单一来源。其他平台适配应引用或复制该文件，并保留其安全边界、用户确认式记忆规则和自然对话方式。平台专属 API 参数、工具调用和记忆功能放在适配层，不要混入核心提示词。
+## 迁移到其他平台
+
+迁移时以 `core_prompt.md` 为规范来源；将它适配到目标平台的系统指令或项目技能中。平台专属调用方式应留在适配层，不要把 Codex 专属语法写进核心提示词。
