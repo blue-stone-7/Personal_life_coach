@@ -20,7 +20,7 @@
 - `core_prompt.md` 是平台无关的行为规范单一来源。
 - `.agents/skills/life-coach/SKILL.md` 是 Codex 项目适配入口，并要求在使用时读取核心提示词。
 - `profile_template.md` 是由用户控制的个人资料模板。
-- 每场新 Life Coach 对话开头会自然确认资料代号和是否读取历史；资料代号不是身份认证。用户可以不读历史、只聊本次内容。每场结束时，agent 会询问是否留存摘要；摘要和长期 profile 仅在用户审阅并明确同意后保存。质量自评依照用户对该项的持续授权，单独写入已选用户目录的 `quality_assess.md`，不展示给用户；模板见 `profiles/quality_assess_template.md`。用户资料路径已加入 `.gitignore`，不会随 Git 提交。
+- 每场新 Life Coach 对话开头会自然确认资料代号和是否读取历史；资料代号不是身份认证。用户可以不读历史、只聊本次内容。每场结束时，agent 会询问是否留存摘要；摘要和长期 profile 仅在用户审阅并明确同意后保存。质量自评依照用户对该项的持续授权，不受摘要保存选择影响：有资料代号时单独写入其 `quality_assess.md`，没有资料代号时写入匿名的单场记录 `quality_assessments/`；自评不展示给用户，模板见 `profiles/quality_assess_template.md`。用户资料和质量自评路径均已加入 `.gitignore`，不会随 Git 提交。
 - 只想进行一次性对话时可选择不使用或读取历史资料；结束时仍可选择是否将本次摘要存入某个资料目录，也可以完全不留存。仓库编辑请求不属于 Life Coach 对话，Skill 应切换为常规 Codex 项目协作模式。
 
 ## 隐私与安全
