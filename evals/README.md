@@ -30,7 +30,7 @@ evals/
 ```markdown
 | 日期 | 对话标识 | 自评文件 | 对话摘要 | 核心提示词版本 |
 |---|---|---|---|---|
-| 2026-11-19 | `c8f31a` | `evals/records/mei_01/2026-11-19-c8f31a.md` | `profiles/mei_01/conversations/2026-11-19-work.md` | 1.4 |
+| 2026-11-19 | `c8f31a2b` | `evals/records/mei_01/2026-11-19-c8f31a2b.md` | `profiles/mei_01/conversations/2026-11-19-work.md` | 1.4 |
 ```
 
 索引中的路径使用仓库根目录相对路径；摘要获准保存时可以用 Markdown 链接，方便直接打开。匿名场次目录只含本场的一条记录，不在匿名目录间建立关联。
