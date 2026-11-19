@@ -1,3 +1,4 @@
 profiles/*/
 !profiles/README.md
+/evals/records/
 quality_assessments/
